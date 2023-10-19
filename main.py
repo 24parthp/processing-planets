@@ -15,7 +15,7 @@ class Box:
         #the length of the vector
         self.lineLength = self.pos.add(self.speed)
         
-        rectMode(RADIUS)
+        rectMode(CENTER)
         
     def show(self):
         #makes a rectangle
@@ -32,9 +32,9 @@ class Box:
         self.pos.add(self.speed)
         
         #bounces of the edge of the screen
-        if (self.pos.x + self.boxSize) > screenWidth or (self.pos.x - self.boxSize) < 0:
+        if (self.pos.x + self.boxSize/2) > screenWidth or (self.pos.x - self.boxSize/2) < 0:
             self.speed.x = self.speed.x * -1
-        if (self.pos.y + self.boxSize) > screenHeight or (self.pos.y - self.boxSize) < 0:
+        if (self.pos.y + self.boxSize/2) > screenHeight or (self.pos.y - self.boxSize/2) < 0:
             self.speed.y = self.speed.y * -1
         
     def collision(self):
@@ -44,7 +44,7 @@ class Box:
                 #calculates the distance between the two objs
                 d = dist(self.pos.x, self.pos.y, obj.pos.x, obj.pos.y)
                 
-                if d < self.boxSize + obj.boxSize:
+                if d < self.boxSize/2 + obj.boxSize/2:
                     self.speed.mult(-1)
                     obj.speed.mult(-1)
             
